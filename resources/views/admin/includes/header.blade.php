@@ -36,7 +36,7 @@
     <!-- start: CLIP-TWO CSS -->
 
     <link rel="stylesheet" href="{{URL::asset('AdminPanel/assets/css/plugins.css')}}">
-    <link rel="stylesheet" href="{{URL::asset('AdminPanel/assets/css/themes/theme-1.css')}}" id="skin_color" />
+    <link rel="stylesheet" href="{{URL::asset('AdminPanel/assets/css/themes/theme-1.css')}}" />
     <link rel="stylesheet" href="{{URL::asset('AdminPanel/assets/css/styles.css')}}">
     <!-- end: CLIP-TWO CSS -->
     <!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
