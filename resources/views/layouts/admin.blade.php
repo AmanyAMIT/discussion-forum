@@ -1,13 +1,18 @@
 @include('admin.includes.header')
-
-        @include('admin.includes.topnav')
+<div id="app">
+    @include('admin.includes.sidebar')
+    <div class="app-content">
         @include('admin.includes.navbar')
-    @yield('content')
+        <div class="main-content">
+            <div class="wrap-content container" id="container">
+                <!-- start: YOUR CONTENT HERE -->
+                @yield('content')
+                <!-- end: YOUR CONTENT HERE -->
+            </div>
+        </div>
+    </div>
 
-    
-<!-- End of Main Content -->
-@include('admin.includes.footer')
+    @include('admin.includes.footer')
 
-    </body>
-    
-    </html>
+</div>
+@include('admin.includes.script')

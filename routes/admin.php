@@ -4,14 +4,18 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ForumController;
+use App\Http\Controllers\Admin\AnswerController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 
-Route::get('/dashboard' , [\App\Http\Controllers\Admin\DashboardController::class , 'index'])->middleware('auth','check.role')->name('admin-view'); 
+Route::get('/dashboard' , [DashboardController::class , 'index'])->middleware('auth','check.role')->name('admin-view'); 
 Route::middleware('auth','check.role')->prefix("dashboard")->group(function(){
-    Route::resource("/users" , \App\Http\Controllers\Admin\UserController::class);
-    Route::resource("/forums" , \App\Http\Controllers\Admin\ForumController::class);
-    Route::resource("/categories" , \App\Http\Controllers\Admin\CategoryController::class);
-    Route::resource("/answers" , \App\Http\Controllers\Admin\AnswerController::class);
+    Route::resource("/users" , UserController::class);
+    Route::resource("/forums" ,ForumController::class);
+    Route::resource("/categories" ,CategoryController::class);
+    Route::resource("/answers" , AnswerController::class);
 });
 Auth::routes();
 
