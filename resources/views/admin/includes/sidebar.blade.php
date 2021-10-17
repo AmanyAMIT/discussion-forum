@@ -26,7 +26,7 @@
                 </div>
                 <ul class="main-navigation-menu">
                     <li>
-                        <a href="index.html">
+                        <a href="{{route('admin-view')}}">
                             <div class="item-content">
                                 <div class="item-media">
                                     <i class="ti-home"></i>
@@ -69,7 +69,7 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="">
+                                <a href="{{route('forums.index')}}">
                                     <span class="title"> All Fourms </span>
                                 </a>
                             </li>
@@ -89,7 +89,7 @@
                         <ul class="sub-menu">
                             <li>
                                 <a href="">
-                                    <span class="title"> All Answer </span>
+                                    <span class="title"> All Answers </span>
                                 </a>
                             </li>
                         </ul>
@@ -107,7 +107,7 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="">
+                                <a href="{{route('categories.index')}}">
                                     <span class="title"> All Category </span>
                                 </a>
                             </li>

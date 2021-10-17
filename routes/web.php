@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\PostForumController;
+use App\Http\Controllers\User\IndexController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('/user' , App\Http\Controllers\User\IndexController::class);
+Route::get('/user' , [IndexController::class , 'index']);
+Route::prefix("user")->group(function(){
+    Route::resource("/post" , PostForumController::class);
+});
 Route::get('/', function () {
     return view('welcome');
 });

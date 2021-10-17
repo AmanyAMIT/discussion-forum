@@ -58,7 +58,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @if (Auth::user()->role == 'Admin')
+                                    @if (Auth::user()->role_id == 2)
                                         <a href="{{route('admin-view')}}" class="dropdown-item">Dashboard
                                         </a>
                                             

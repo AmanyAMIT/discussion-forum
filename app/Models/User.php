@@ -24,7 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role',
+        'role_id',
         'image'
     ];
 
@@ -55,5 +55,10 @@ class User extends Authenticatable
     public function answers()
     {
         return $this->hasMany(Answer::class, 'user_id' , 'id');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id' , 'id');
     }
 }

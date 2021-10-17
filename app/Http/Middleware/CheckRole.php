@@ -18,8 +18,8 @@ class CheckRole
     public function handle(Request $request, Closure $next)
     {
         //Check user if Admin go to admin panel if not return him to index
-        $isadmin = Auth::user()->role;
-        if($isadmin == 'Admin')
+        $isadmin = Auth::user()->role_id;
+        if($isadmin == 2)
         {
             return $next($request);
         }

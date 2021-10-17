@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Forum;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -15,7 +16,8 @@ class IndexController extends Controller
     public function index()
     {
         //Welcome Page
-        return view('user.index');
+        $forums = Forum::paginate(5);
+        return view('user.index' , compact('forums'));
     }
 
     /**

@@ -21,9 +21,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($categories as $category)
                                 <tr>
-                                    <td>Laravel</td>
-                                    <td class="hidden-xs">x8</td>
+                                    <td>{{$category->cat_name}}</td>
+                                    <td class="hidden-xs">{{$category->version_no}}</td>
                                     <td class="justify-content-center">
                                         <div class="visible-md visible-lg hidden-sm hidden-xs">
                                             <a href="EditCat.html" class="btn btn-transparent btn-xs btn-warning mx-1" tooltip-placement="top" tooltip="Edit">Edit</a>
@@ -32,39 +33,8 @@
                                                 </form>
                                             </td>
                                 </tr>
-                                <tr>
-                                    <td>Laravel</td>
-                                    <td class="hidden-xs">x8</td>
-                                    <td class="justify-content-center">
-                                        <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                            <a href="EditCat.html" class="btn btn-transparent btn-xs btn-warning mx-1" tooltip-placement="top" tooltip="Edit">Edit</a>
-                                                <form method="POST" action="#" class="d-inline">
-                                                    <input type="submit" class="btn btn-danger m-1" value="Delete">
-                                                </form>
-                                            </td>
-                                </tr>
-                                <tr>
-                                    <td>Laravel</td>
-                                    <td class="hidden-xs">x8</td>
-                                    <td class="justify-content-center">
-                                        <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                            <a href="EditCat.html" class="btn btn-transparent btn-xs btn-warning mx-1" tooltip-placement="top" tooltip="Edit">Edit</a>
-                                                <form method="POST" action="#" class="d-inline">
-                                                    <input type="submit" class="btn btn-danger m-1" value="Delete">
-                                                </form>
-                                            </td>
-                                </tr>
-                                <tr>
-                                    <td>Laravel</td>
-                                    <td class="hidden-xs">x8</td>
-                                    <td class="justify-content-center">
-                                        <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                            <a href="EditCat.html" class="btn btn-transparent btn-xs btn-warning mx-1" tooltip-placement="top" tooltip="Edit">Edit</a>
-                                                <form method="POST" action="#" class="d-inline">
-                                                    <input type="submit" class="btn btn-danger m-1" value="Delete">
-                                                </form>
-                                            </td>
-                                </tr>
+                                @endforeach
+                                
                             </tbody>
                         </table>
                     </div>

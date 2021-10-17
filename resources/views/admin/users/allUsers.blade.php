@@ -24,14 +24,15 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($users as $user)
                                 <tr>
                                     <td class="center">
                                         <img src="{{URL::asset('AdminPanel/assets/images/avatar-1.jpg')}}" class="img-rounded" alt="image">
                                         </td>
-                                    <td>Peter Clark</td>
+                                    <td>{{$user->name}}</td>
                                     <td class="hidden-xs">
                                         <a href="#" rel="nofollow" target="_blank">
-                                            peter@example.com
+                                            {{$user->email}}
                                         </a>    
                                     </td>
                                     <td class="center">
@@ -50,6 +51,8 @@
         
                                     </td>
                                 </tr>
+                                @endforeach
+                                
 
                             </tbody>
                         </table>

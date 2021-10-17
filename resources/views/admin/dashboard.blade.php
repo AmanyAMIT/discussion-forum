@@ -24,10 +24,10 @@
                             <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fas fa-grin-alt fa-stack-1x fa-inverse"></i> </span>
                             <h2 class="StepTitle">Total Users</h2>
                             <p class="text-small">
-                                10 Users
+                                {{$user}} Users
                             </p>
                             <p class="links cl-effect-1">
-                                <a href="Table.html">
+                                <a href="{{route('users.index')}}">
                                     view more
                                 </a>
                             </p>
@@ -40,10 +40,10 @@
                             <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-paperclip fa-stack-1x fa-inverse"></i> </span>
                             <h2 class="StepTitle">Total Forums</h2>
                             <p class="text-small">
-                                10 Forums
+                                {{$forum}} Forums
                             </p>
                             <p class="cl-effect-1">
-                                <a href="TableForum.html">
+                                <a href="{{route('forums.index')}}">
                                     view more
                                 </a>
                             </p>
@@ -56,10 +56,10 @@
                             <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
                             <h2 class="StepTitle">Total Categories</h2>
                             <p class="text-small">
-                                10 Categories
+                                {{$category}} Categories
                             </p>
                             <p class="links cl-effect-1">
-                                <a href="CatTable.html">
+                                <a href="{{route('categories.index')}}">
                                     view more
                                 </a>
                             </p>

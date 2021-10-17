@@ -20,11 +20,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($forums as $forum)
                                 <tr>
-                                    <td class="center">Title</td>
-                                    <td>Some body here....</td>
-                                    <td class="hidden-xs">User</td>
-                                    <td class="hidden-xs">Category</td>
+                                    <td class="center">{{$forum->title}}</td>
+                                    <td>{{$forum->body}}</td>
+                                    <td class="hidden-xs">{{$forum->user->name}}</td>
+                                    <td class="hidden-xs">{{$forum->category->cat_name}}</td>
                                     <td class="justify-content-center">
                                         <div class="visible-md visible-lg hidden-sm hidden-xs">
                                                 <form method="POST" action="#" class="d-inline">
@@ -32,42 +33,8 @@
                                                 </form>
                                             </td>
                                 </tr>
-                                <tr>
-                                    <td class="center">Title</td>
-                                    <td>Some body here....</td>
-                                    <td class="hidden-xs">User</td>
-                                    <td class="hidden-xs">Category</td>
-                                    <td class="justify-content-center">
-                                        <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                                <form method="POST" action="#" class="d-inline">
-                                                    <input type="submit" class="btn btn-danger m-1" value="Delete">
-                                                </form>
-                                            </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">Title</td>
-                                    <td>Some body here....</td>
-                                    <td class="hidden-xs">User</td>
-                                    <td class="hidden-xs">Category</td>
-                                    <td class="justify-content-center">
-                                        <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                                <form method="POST" action="#" class="d-inline">
-                                                    <input type="submit" class="btn btn-danger m-1" value="Delete">
-                                                </form>
-                                            </td>
-                                </tr>
-                                <tr>
-                                    <td class="center">Title</td>
-                                    <td>Some body here....</td>
-                                    <td class="hidden-xs">User</td>
-                                    <td class="hidden-xs">Category</td>
-                                    <td class="justify-content-center">
-                                        <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                                <form method="POST" action="#" class="d-inline">
-                                                    <input type="submit" class="btn btn-danger m-1" value="Delete">
-                                                </form>
-                                            </td>
-                                </tr>
+                                @endforeach
+                                
                             </tbody>
                         </table>
                     </div>

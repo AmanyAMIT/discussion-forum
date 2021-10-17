@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Admin\Category;
+use App\Models\Forum;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
-class DashboardController extends Controller
+class PostForumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +17,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //To Display All Users , Forums and Categories
-        $user = DB::table('users')->get()->count();
-        $forum = DB::table('forums')->get()->count();
-        $category = DB::table('categories')->get()->count();
-        return view('admin.dashboard' , compact('user' , 'forum' , 'category'));
+        //
     }
 
     /**
@@ -31,6 +28,8 @@ class DashboardController extends Controller
     public function create()
     {
         //
+        $categories = Category::all();
+        return view('user.forums.createForum' , compact('categories'));
     }
 
     /**
@@ -42,6 +41,25 @@ class DashboardController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all() , [
+            'title' => ['required'],
+            'body' => ['required', 'min:4' , 'max:225'],
+            'cat_id' => ['required'],
+            'user_id' => ['required']
+        ]);
+        //To start storing Products in DB
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }else{
+            $forum = new Forum();
+            $forum->title = $request->input('title');
+            $forum->body = $request->input('body');
+            $forum->cat_id = $request->input('cat_id');
+            $forum->user_id = $request->input('user_id');
+            $forum->save();
+            return redirect()->back()->with(['success' => 'You Post a Forum']);
+        }
     }
 
     /**

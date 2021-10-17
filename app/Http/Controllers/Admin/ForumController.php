@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Forum;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
@@ -15,7 +16,8 @@ class ForumController extends Controller
     public function index()
     {
         //
-        return view('admin.forums.allForums');
+        $forums = Forum::paginate(5);
+        return view('admin.forums.allForums' , compact('forums'));
     }
 
     /**
@@ -82,5 +84,8 @@ class ForumController extends Controller
     public function destroy($id)
     {
         //
+        $forum = Forum::findOrFail($id);
+        $forum->delete();
+        return redirect()->back()->with(['success' => 'Product was deleted']);
     }
 }
