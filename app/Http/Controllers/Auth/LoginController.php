@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -20,7 +21,13 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
+    protected function authenticated() {
+        if (Auth::user()->role_id == 2) {
+            return redirect()->route('admin-view');
+        }else{
+            return redirect()->route('user-view');
+        }
+    }
     /**
      * Where to redirect users after login.
      *

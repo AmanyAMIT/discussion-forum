@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <h3 class="over-title margin-bottom-15 text-center">All <span class="text-bold">Users</span></h3>
             <div class="alert alert-info">
-                <a href="" class="btn btn-primary">
+                <a href="{{route('users.create')}}" class="btn btn-primary">
                     <i class="fas fa-user-plus"></i> Add New User
                 </a>
             </div>
@@ -27,7 +27,7 @@
                                 @foreach ($users as $user)
                                 <tr>
                                     <td class="center">
-                                        <img src="{{URL::asset('AdminPanel/assets/images/avatar-1.jpg')}}" class="img-rounded" alt="image">
+                                        <img src="{{asset('uploads/user/' . $user->image)}}" class="img-rounded" alt="User Image" style="max-width: 5%">
                                         </td>
                                     <td>{{$user->name}}</td>
                                     <td class="hidden-xs">
@@ -37,16 +37,21 @@
                                     </td>
                                     <td class="center">
                                         <div>
-                                            <a href="#" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit">
+                                            <a href="{{route('users.edit' , $user->id)}}" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a href="#" class="btn btn-transparent btn-xs tooltips"  tooltip-placement="top" tooltip="Share">
-                                                <i class="fa fa-share"></i>
+                                            <a href="#" class="btn btn-transparent btn-xs tooltips"  tooltip-placement="top" tooltip="Show">
+                                                <i class="fas fa-eye"></i>
                                             </a>
-                                            <a href="#" class="btn btn-transparent btn-xs tooltips"
+                                            <form method="POST" action="{{route('users.destroy' , $user->id)}}">
+                                                @csrf
+                                                {{method_field('DELETE')}}
+                                                <input type="submit" class="btn btn-danger m-1" value="Delete">
+                                            </form> 
+                                            {{-- <a href="#" class="btn btn-transparent btn-xs tooltips"
                                                 tooltip-placement="top" tooltip="Remove">
                                                 <i class="fa fa-times"></i>
-                                            </a>
+                                            </a> --}}
                                         </div>
         
                                     </td>

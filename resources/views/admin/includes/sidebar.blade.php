@@ -38,6 +38,18 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{route('user-view')}}">
+                            <div class="item-content">
+                                <div class="item-media">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <div class="item-inner">
+                                    <span class="title"> User Interface </span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
                         <a href="javascript:void(0)">
                             <div class="item-content">
                                 <div class="item-media">
@@ -88,7 +100,7 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="">
+                                <a href="{{route('answers.index')}}">
                                     <span class="title"> All Answers </span>
                                 </a>
                             </li>

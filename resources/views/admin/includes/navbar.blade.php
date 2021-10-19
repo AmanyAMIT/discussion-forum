@@ -142,7 +142,7 @@
 				<!-- start: USER OPTIONS DROPDOWN -->
 				<li class="dropdown current-user">
 					<a href class="dropdown-toggle" data-toggle="dropdown">
-						<img src="assets/images/avatar-1.jpg" alt="Peter"> <span class="username">Peter <i class="ti-angle-down"></i></i></span>
+						<img src="{{asset('uploads/user/' . Auth::user()->image)}}"> <span class="username">{{Auth::user()->name}} <i class="ti-angle-down"></i></i></span>
 					</a>
 					<ul class="dropdown-menu dropdown-dark">
 						<li>
@@ -166,9 +166,14 @@
 							</a>
 						</li>
 						<li>
-							<a href="login_signin.html">
-								Log Out
-							</a>
+							<a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+								@csrf
+							</form>
 						</li>
 					</ul>
 				</li>

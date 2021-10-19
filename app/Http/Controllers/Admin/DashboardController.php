@@ -17,10 +17,11 @@ class DashboardController extends Controller
     public function index()
     {
         //To Display All Users , Forums and Categories
+        $users = User::all();
         $user = DB::table('users')->get()->count();
         $forum = DB::table('forums')->get()->count();
         $category = DB::table('categories')->get()->count();
-        return view('admin.dashboard' , compact('user' , 'forum' , 'category'));
+        return view('admin.dashboard' , compact('user' , 'forum' , 'category' , 'users'));
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -40,6 +41,20 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all() , [
+            'cat_name' => ['required'],
+            'version_no' => ['required']
+        ]);
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }else{
+            $category = new Category;
+            $category->cat_name = $request->input('cat_name');
+            $category->version_no = $request->input('version_no');
+            $category->save();
+        }
+        return redirect()->back()->with(['success' => 'Category has been added']);
     }
 
     /**
@@ -62,7 +77,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
-        return view('admin.categories.editCategory');
+        $category = Category::findOrFail($id);
+        return view('admin.categories.editCategory' , compact('category'));
     }
 
     /**
@@ -75,6 +91,19 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all() , [
+            'cat_name' => ['required'],
+            'version_no' => ['required']
+        ]);
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+        $category = Category::findOrFail($id);
+        $category->cat_name = $request->input('cat_name');
+        $category->version_no = $request->input('version_no');
+        $category->update();
+        return redirect()->back()->with(['success' => 'Category has been updated']);
     }
 
     /**
@@ -86,5 +115,8 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+        $category = Category::findOrFail($id);
+        $category->delete();
+        return redirect()->back()->with(['success' => 'Category has been deleted']);
     }
 }

@@ -16,7 +16,7 @@ use App\Http\Controllers\User\IndexController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/user' , [IndexController::class , 'index']);
+Route::get('/user' , [IndexController::class , 'index'])->name("user-view");
 Route::prefix("user")->group(function(){
     Route::resource("/post" , PostForumController::class);
 });

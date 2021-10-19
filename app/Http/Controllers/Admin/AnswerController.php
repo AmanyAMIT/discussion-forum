@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 
 class AnswerController extends Controller
@@ -15,7 +16,8 @@ class AnswerController extends Controller
     public function index()
     {
         //
-        return view('admin.answers.allAnswers');
+        $answers = Answer::paginate(5);
+        return view('admin.answers.allAnswers', compact('answers'));
     }
 
     /**
@@ -59,7 +61,8 @@ class AnswerController extends Controller
     public function edit($id)
     {
         //
-        return view('admin.answers.editAnswer');
+        $answer = Answer::findOrFail($id);
+        return view('admin.answers.allAnswers', compact('answer'));
     }
 
     /**
@@ -72,6 +75,10 @@ class AnswerController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $answer = Answer::findOrFail($id);
+        $answer->status = $request->input('status');
+        $answer->update();
+        return redirect()->back()->with(['success' => 'Product was updated']);
     }
 
     /**

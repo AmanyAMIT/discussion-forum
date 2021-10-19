@@ -63,7 +63,7 @@
                                         </a>
                                             
                                         @else
-                                        <a href="{{route('user.index')}}" class="dropdown-item">Welcome
+                                        <a href="{{route('user-view')}}" class="dropdown-item">Welcome
                                         </a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"

@@ -22,20 +22,24 @@
                     <div class="row">
                         <div class="col-md-12">
                             <hr>
-                            <form action="#" role="form" id="form2">
+                            <form method="POST" action="{{route('categories.store')}}" role="form" id="form2">
                                 <div class="row">
+                                    @include('sweetalert::alert')
+                                </div>
+                                <div class="row">
+                                    @csrf
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">
                                                 Category Name <span class="symbol required"></span>
                                             </label>
-                                            <input type="text" placeholder="Insert your First Name" class="form-control" id="firstname2" name="firstname2">
+                                            <input type="text" placeholder="Insert Category Name" class="form-control" id="firstname2" name="cat_name">
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">
                                                 Version Number <span class="symbol required"></span>
                                             </label>
-                                            <input type="text" placeholder="Insert your Last Name" class="form-control" id="lastname2" name="lastname2">
+                                            <input type="number" placeholder="Insert Category Version Number" class="form-control" id="lastname2" name="version_no">
                                         </div>
 
                                 </div>
@@ -46,9 +50,7 @@
                                         </p>
                                     </div>
                                     <div class="col-md-4">
-                                        <button class="btn btn-primary btn-wide pull-right" type="submit">
-                                            Submit <i class="fa fa-arrow-circle-right"></i>
-                                        </button>
+                                        <input type="submit" value="Submit" class="btn btn-primary btn-wide pull-right">
                                     </div>
                                 </div>
                             </form>

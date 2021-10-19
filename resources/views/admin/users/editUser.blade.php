@@ -22,10 +22,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             <hr>
-                            <form method="POST" action="{{route('users.store')}}" role="form" id="form2" enctype="multipart/form-data">
+                            <form method="POST" action="{{route('users.update' , $user->id)}}" role="form" id="form2" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-md-6">
                                         @csrf
+                                        {{method_field('PUT')}}
                                         <div class="form-group">
                                             <label class="control-label">
                                                 Picture <span class="symbol required"></span>
@@ -39,7 +40,9 @@
                                             <label class="control-label">
                                                 Username <span class="symbol required"></span>
                                             </label>
-                                            <input type="text" placeholder="Insert your First Name" class="form-control" id="firstname2" name="name">
+                                            <input type="text" class="form-control"
+                                            value="{{$user->name}}"
+                                            id="firstname2" name="name">
                                             @error('name')
                                         <small class="text-danger"> {{$message}} </small> 
                                         @enderror
@@ -48,25 +51,19 @@
                                             <label class="control-label">
                                                 Email <span class="symbol required"></span>
                                             </label>
-                                            <input type="email" placeholder="Insert your Last Name" class="form-control" id="lastname2" name="email">
+                                            <input type="email" placeholder="Insert your Last Name" class="form-control"
+                                            value="{{$user->email}}"
+                                            id="lastname2" name="email">
                                             @error('email')
                                         <small class="text-danger"> {{$message}} </small> 
                                         @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label">
-                                                Password <span class="symbol required"></span>
-                                            </label>
-                                            <input type="password" placeholder="Text Field" class="form-control" id="email2" name="password">
-                                            @error('password')
-                                        <small class="text-danger"> {{$message}} </small> 
-                                        @enderror
-                                        </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">
-                                                Roles <em>(select at most one)</em> <span class="symbol required"></span>
+                                                Roles <em>(select at most one)</em > <span class="symbol required"></span>
                                             </label>
                                             @foreach ($roles as $role)
                                             <div class="checkbox clip-check check-primary">
@@ -86,11 +83,11 @@
                                 <div class="row">
                                     <div class="col-md-8">
                                         <p>
-                                            By clicking REGISTER, you are agreeing to add this user to your community
+                                            By clicking UPDATE, you are agreeing to update this user's information
                                         </p>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="submit" value="Register" class="btn btn-primary btn-wide pull-right">
+                                        <input type="submit" value="Update" class="btn btn-primary btn-wide pull-right">
                                     </div>
                                 </div>
                             </form>

@@ -15,7 +15,7 @@
                                     <th class="center">Forum title</th>
                                     <th>Forum body</th>
                                     <th class="hidden-xs">Written By</th>
-                                    <th class="hidden-xs">Belongs to</th>
+                                    <th class="hidden-xs">Belongs to</td>
                                     <th>Control</th>
                                 </tr>
                             </thead>
@@ -28,9 +28,12 @@
                                     <td class="hidden-xs">{{$forum->category->cat_name}}</td>
                                     <td class="justify-content-center">
                                         <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                                <form method="POST" action="#" class="d-inline">
-                                                    <input type="submit" class="btn btn-danger m-1" value="Delete">
-                                                </form>
+                                            <form method="POST" action="{{route('forums.destroy' , $forum->id)}}">
+                                                @csrf
+                                                {{method_field('DELETE')}}
+                                                <input type="submit" class="btn btn-danger m-1" value="Delete">
+                                            </form> 
+                                        </div>
                                             </td>
                                 </tr>
                                 @endforeach

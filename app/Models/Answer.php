@@ -12,6 +12,7 @@ class Answer extends Model
     use HasFactory;
 
     protected $fillable = [
+        'answer',
         'forum_id',
         'user_id',
         'status',

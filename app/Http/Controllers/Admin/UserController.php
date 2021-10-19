@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -28,7 +31,8 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('admin.users.addUser');
+        $roles = Role::all();
+        return view('admin.users.addUser' , compact('roles'));
     }
 
     /**
@@ -39,7 +43,36 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         //insert in DB with validation
+                $validator = Validator::make($request->all() , [
+                    'image' => ['required'],
+                    'name' => ['required', 'min:4' , 'max:225'],
+                    'email' => ['required' , 'email' , 'unique:users'],
+                    'password' => ['required' , 'min:8'],
+                    'role_id' => ['required'],
+                ]);
+                if($validator->fails())
+                {
+                    return redirect()->back()->withErrors($validator)->withInput($request->all());
+                }
+                $user = new User();
+                $user->name = $request->input('name');
+                $user->email = $request->input('email');
+                $user->password = Hash::make($request->input('password'));
+                $user->role_id = $request->input('role_id');
+                if($request->hasFile('image')){
+                    $file = $request->file('image');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = time() . '.' . $extension;
+                    $file->move('uploads/user/' , $filename);
+                    $user->image = $filename;
+                }
+                else{
+                    return $request;
+                    $user->image = '';
+                }
+                $user->save();
+                return redirect()->back()->with(['success' => 'User has been added']);
     }
 
     /**
@@ -64,6 +97,9 @@ class UserController extends Controller
     {
         //
         
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+        return view('admin.users.editUser' , compact('user' , 'roles'));
     }
 
     /**
@@ -76,6 +112,33 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all() , [
+            'name' => ['min:4' , 'max:225'],
+            'email' => ['email']
+        ]);
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+        $user = User::findOrFail($id);
+        $user->image = $request->input('image');
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->role_id = $request->input('role_id');
+
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/user/' , $filename);
+            $user->image = $filename;
+        }
+        else{
+            return $request;
+            $user->image = '';
+        }
+        $user->update();
+        return redirect()->back()->with(['success' => 'User has been updated']);
     }
 
     /**
@@ -87,5 +150,8 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->back()->with(['success' => 'User has been deleted']);
     }
 }

@@ -22,20 +22,22 @@
                     <div class="row">
                         <div class="col-md-12">
                             <hr>
-                            <form action="#" role="form" id="form2">
+                            <form method="POST" action="{{route('categories.update' , $category->id)}}" role="form" id="form2">
                                 <div class="row">
                                     <div class="col-md-6">
+                                        @csrf
+                                        {{method_field('PUT')}}
                                         <div class="form-group">
                                             <label class="control-label">
                                                 Category Name <span class="symbol required"></span>
                                             </label>
-                                            <input type="text" placeholder="Insert Category Name" class="form-control" id="firstname2" name="firstname2">
+                                            <input type="text" placeholder="Insert Category Name" class="form-control" id="firstname2" value="{{$category->cat_name}}" name="cat_name">
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">
                                                 Version Number <span class="symbol required"></span>
                                             </label>
-                                            <input type="text" placeholder="Insert Version Number" class="form-control" id="lastname2" name="lastname2">
+                                            <input type="text" placeholder="Insert Version Number" class="form-control" id="lastname2" value="{{$category->version_no}}" name="version_no">
                                         </div>
 
                                 </div>
