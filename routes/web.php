@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\AnswerForumController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\PostForumController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\User\IndexController;
 Route::get('/user' , [IndexController::class , 'index'])->name("user-view");
 Route::prefix("user")->group(function(){
     Route::resource("/post" , PostForumController::class);
+    Route::resource("/answer" , AnswerForumController::class);
 });
 Route::get('/', function () {
     return view('welcome');

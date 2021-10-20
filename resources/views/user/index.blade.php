@@ -26,11 +26,15 @@
                                 <p class="text-secondary">
                                     {{$forum->title}}
                                 </p>
+                                <p class="text-secondary">
+                                    {{$forum->body}}
+                                </p>
                                 <p class="text-muted"><a href="javascript:void(0)">drewdan</a> replied <span class="text-secondary font-weight-bold">13 minutes ago</span></p>
                             </div>
                             <div class="text-muted small text-center align-self-center">
-                                <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> 19</span>
-                                <span><i class="far fa-comment ml-2"></i> 3</span>
+                                <a href="{{route('answer.create' , $forum->id)}}">Answer This Forum</a>
+                                {{-- <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> 19</span>
+                                <span><i class="far fa-comment ml-2"></i> 3</span> --}}
                             </div>
                         </div>
                     </div>

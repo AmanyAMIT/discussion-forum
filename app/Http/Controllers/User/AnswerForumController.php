@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Answer;
 use App\Models\Forum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class IndexController extends Controller
+class AnswerForumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        //Welcome Page
-        $forums = Forum::paginate(5);
-        return view('user.index' , compact('forums'));
+        //
     }
 
     /**
@@ -29,6 +28,7 @@ class IndexController extends Controller
     public function create()
     {
         //
+        return view('user.answers.addAnswer');
     }
 
     /**
@@ -40,6 +40,15 @@ class IndexController extends Controller
     public function store(Request $request)
     {
         //
+            $forum = new Forum();
+            $answer = Answer::create([
+                'answer' => $request->input('answer'),
+                'user_id' => Auth()->user() ? Auth()->user()->id : null,
+                'forum_id' => $request->input('forum_id'),
+                'status' => $request->input('status'),
+                'rate' => $request->input('rate'),
+            ]);
+            return redirect()->back()->with(['success' => 'You Answered This Forum']);
     }
 
     /**
