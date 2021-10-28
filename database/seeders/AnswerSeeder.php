@@ -30,6 +30,13 @@ class AnswerSeeder extends Seeder
                 'status' => '0',
                 'rate' => '0'
             ),
+            array(
+                'answer' => 'Model View Controller',
+                'forum_id' => '2',
+                'user_id' => '1',
+                'status' => '0',
+                'rate' => '0'
+            ),
             ]);
     }
 }

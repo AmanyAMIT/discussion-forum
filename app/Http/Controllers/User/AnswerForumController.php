@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Admin\ForumController;
 use App\Http\Controllers\Controller;
 use App\Models\Answer;
 use App\Models\Forum;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -18,6 +20,7 @@ class AnswerForumController extends Controller
     public function index()
     {
         //
+        return view('user.index');
     }
 
     /**
@@ -28,7 +31,7 @@ class AnswerForumController extends Controller
     public function create()
     {
         //
-        return view('user.answers.addAnswer');
+        return view('user.index');
     }
 
     /**
@@ -60,6 +63,8 @@ class AnswerForumController extends Controller
     public function show($id)
     {
         //
+        $answer = Answer::findOrFail($id);
+        return view('user.answers.showAnswer' , compact('answer'));
     }
 
     /**

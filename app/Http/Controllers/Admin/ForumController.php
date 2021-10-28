@@ -18,7 +18,6 @@ class ForumController extends Controller
     public function index()
     {
         //
-        
         $forums = Forum::paginate(5);
         $answers = Answer::all();
         return view('admin.forums.allForums' , compact('forums' , 'answers'));

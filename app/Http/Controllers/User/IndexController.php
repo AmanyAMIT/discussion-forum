@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Answer;
 use App\Models\Forum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -18,7 +19,8 @@ class IndexController extends Controller
     {
         //Welcome Page
         $forums = Forum::paginate(5);
-        return view('user.index' , compact('forums'));
+        $answers = Answer::all();
+        return view('user.index' , compact('forums' , 'answers'));
     }
 
     /**
