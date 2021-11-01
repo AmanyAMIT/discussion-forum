@@ -43,6 +43,17 @@ class AnswerForumController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all() , [
+            'answer' => ['required'],
+            'user_id' => ['required', 'min:4' , 'max:225'],
+            'fourm_id' => ['required' , 'email' , 'unique:users'],
+            'status' => ['required' , 'min:8'],
+            'rate' => ['required'],
+        ]);
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
             $forum = new Forum();
             $answer = Answer::create([
                 'answer' => $request->input('answer'),

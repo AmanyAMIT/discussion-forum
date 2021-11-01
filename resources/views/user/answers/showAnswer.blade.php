@@ -30,14 +30,29 @@
                                 </p>
                                 </div>
                             </div>
-                            <div class="media forum-item mt-5">
+                            @if ($answer->status == 1)
+                            <div class="media forum-item mt-5 right-answer answer-body">
+                                <div class="d-flex">
+                                    <p class="best-answer"><i class="fas fa-check"></i> Best Answer</p>
+                                </div>
                                 <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
                                 <div class="media-body">
                                     <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">{{$answer->user->name}}</a></h6>
-                                    <textarea disabled id="" cols="90" rows="7">{{$answer->answer}}</textarea>
+                                    <p class="answer">{{$answer->answer}}</p>
+                                </div>
+                            </div>
+                                
+                            @else
+                            <div class="media forum-item mt-5 answer-body">
+                                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
+                                <div class="media-body">
+                                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">{{$answer->user->name}}</a></h6>
+                                    <p class="answer">{{$answer->answer}}</p>
                                 </div>
                             
                             </div>
+                            @endif
+                            
                         </div>
                     </div>
                         

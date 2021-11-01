@@ -22,20 +22,16 @@
                         <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
                             <div class="simplebar-content" style="padding: 16px;">
                                 <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">All Threads</a>
-                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Popular this week</a>
-                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Popular all time</a>
-                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Solved</a>
-                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Unsolved</a>
-                                    <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">No replies yet</a>
+                                    <a href="{{route('user-view')}}" class="nav-link nav-link-faded has-icon active">All Forums</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                                        Logout
+                                                        document.getElementById('logout-form').submit();">
+                                        Logout 
                                     </a>
-							<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-								@csrf
-							</form>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </nav>
                             </div>
                         </div>

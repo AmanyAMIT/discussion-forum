@@ -29,7 +29,6 @@
                                 <p class="text-secondary">
                                     {{$forum->body}}
                                 </p>
-                                {{-- <p class="text-muted"><a href="javascript:void(0)">drewdan</a> replied <span class="text-secondary font-weight-bold">13 minutes ago</span></p> --}}
                             </div>
                         </div>
                     </div>

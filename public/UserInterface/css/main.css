@@ -125,3 +125,22 @@ body{
     min-height: 1px;
     padding: 1rem;
 }
+.answer-body{
+    margin-left: 5%;
+}
+.right-answer{
+    border: 2.5px solid green;
+    border-radius: 15px;
+    padding: 5%;
+    position: relative;
+}
+.right-answer .best-answer{
+    color: #237546 !important;
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    transform: translate(36rem, -2rem);
+}
+.answer{
+    background-color:#e3dcdc;
+}
