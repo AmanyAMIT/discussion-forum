@@ -71,6 +71,12 @@ class AnswerForumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function ShowAnswer(){
+    //     $forums = Forum::paginate(5);
+    //     $answers = Answer::all();
+    //     return view('user.answers.showAnswer' , compact('forums' , 'answers'));
+    // }
+
     public function show($id)
     {
         //

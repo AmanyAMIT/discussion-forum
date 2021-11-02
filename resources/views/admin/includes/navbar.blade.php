@@ -151,21 +151,6 @@
 							</a>
 						</li>
 						<li>
-							<a href="pages_calendar.html">
-								My Calendar
-							</a>
-						</li>
-						<li>
-							<a hef="pages_messages.html">
-								My Messages (3)
-							</a>
-						</li>
-						<li>
-							<a href="login_lockscreen.html">
-								Lock Screen
-							</a>
-						</li>
-						<li>
 							<a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">

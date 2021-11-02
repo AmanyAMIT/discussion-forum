@@ -23,15 +23,14 @@
                             <div class="simplebar-content" style="padding: 16px;">
                                 <nav class="nav nav-pills nav-gap-y-1 flex-column">
                                     <a href="{{route('user-view')}}" class="nav-link nav-link-faded has-icon active">All Forums</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                        Logout 
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                                    Logout
+                                                </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
                                 </nav>
                             </div>
                         </div>

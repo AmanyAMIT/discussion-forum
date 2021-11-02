@@ -144,3 +144,10 @@ body{
 .answer{
     background-color:#e3dcdc;
 }
+.hidden{
+    display: none;
+}
+.answer-btn{
+    border: none;
+    color: var(--blue);
+}

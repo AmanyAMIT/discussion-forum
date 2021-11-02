@@ -17,14 +17,18 @@ use App\Http\Controllers\User\IndexController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/user' , [IndexController::class , 'index'])->name("user-view");
-Route::prefix("user")->group(function(){
+Route::get('/user' , [IndexController::class , 'index'])->middleware('auth' , 'check.user')->name("user-view");
+Route::middleware('auth' , 'check.user')->prefix('user')->group(function(){
     Route::resource("/post" , PostForumController::class);
     Route::resource("/answer" , AnswerForumController::class);
 });
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::prefix("user")->group(function(){
+   
+//     // Route::get('/ShowAnswer' , [AnswerForumController::class , 'ShowAnswer'])->name('ShowAnswer');
+// });
+// Route::get('/', function () {
+//     return redirect()->route('user-view');
+// });
 
 Auth::routes();
 

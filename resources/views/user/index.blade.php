@@ -51,9 +51,11 @@
                         </div>
                         @foreach ($answers as $answer)
                             @if ($answer->forum->id == $forum->id)
-                            <p class="text-muted mx-3 text-secondary font-weight-bold"><a href="{{route('answer.show' , $answer->id)}}">See Answers!</a></p>
-                            @endif
+                            <p class="text-muted mx-3 text-secondary font-weight-bold hidden showanswer">{{$answer->answer}}</p>
+                        @endif
                         @endforeach
+                        <button type="button" class="ShowAnswer answer-btn m-3 font-weight-bold" onclick="showMore()">Show Answers</button>
+                        <button type="button" class="HideAnswer hidden answer-btn m-3 font-weight-bold" onclick="showMore()">Hide Answers</button>
                 </form>
                 </div>
                 @endforeach
@@ -112,8 +114,8 @@
 </div>
 
 <script type="text/javascript">
-
 </script>
+<script src="{{URL::asset('UserInterface/js/custome.js')}}"></script>
 </body>
 </html>
 

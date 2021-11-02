@@ -17,5 +17,8 @@ Route::middleware('auth','check.role')->prefix("dashboard")->group(function(){
     Route::resource("/categories" ,CategoryController::class);
     Route::resource("/answers" , AnswerController::class);
 });
+Route::get('/', function () {
+        return redirect()->route('admin-view');
+    });
 Auth::routes();
 
