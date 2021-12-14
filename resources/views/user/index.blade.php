@@ -51,11 +51,50 @@
                         </div>
                         @foreach ($answers as $answer)
                             @if ($answer->forum->id == $forum->id)
-                            <p class="text-muted mx-3 text-secondary font-weight-bold hidden showanswer">{{$answer->answer}}</p>
+                            @if ($answer->status == 1)
+                            <div class="answer hidden showanswer">
+                                <div class="answer-container hidden showanswer">
+                                    <div class="user">
+                                        <img src="{{asset('uploads/user/' . Auth::user()->image)}}" alt="user" class="hidden
+                                        showanswer" width="50px">
+                                        <p class="font-weight-bold hidden showanswer">{{$answer->user->name}}</p>
+                                    </div>
+                                <p class="hidden showanswer">{{$answer->answer}}</p>
+                                <div class="best-answer">
+                                    <i class="fas fa-check best-icon"></i>
+                                    <h4>Best Answer</h4>
+                                </div>
+                                </div>
+                            </div>
+                            @else
+                            <div class="normal-answers hidden showanswer">
+                                <div class="normal-answers-container hidden showanswer">
+                                    <div class="answers">
+                                        <img src="{{asset('uploads/user/' . Auth::user()->image)}}" alt="user" class="hidden showanswer" width="50px">
+                                        <p class="font-weight-bold hidden showanswer">{{$answer->user->name}}</p>
+                                    </div>
+                                    <p class="hidden showanswer">{{$answer->answer}}</p>
+                                    <input type="hidden" name="" id="" value="{{$answer->id}}">
+                                    <div class="rate-answer">
+                                        <form method="POST" action="{{route('answers.update' , $answer->id)}}">
+                                            @csrf
+                                            {{@method_field('PUT')}}
+                                            <input type="hidden" name="" id="" value="{{$answer->id}}">
+                                            <div>
+                                                <input name="rate" id="" type="hidden" value="1">Up
+                                            </div>
+                                            <p>{{$answer->rate}}</p>
+                                            <i class="fas fa-caret-down"></i>
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            @endif
                         @endif
                         @endforeach
                         <button type="button" class="ShowAnswer answer-btn m-3 font-weight-bold" onclick="showMore()">Show Answers</button>
-                        <button type="button" class="HideAnswer hidden answer-btn m-3 font-weight-bold" onclick="showMore()">Hide Answers</button>
+                        <button type="button" class="HideAnswer hidden answer-btn m-3 font-weight-bold" onclick="hideShowLess()">Hide Answers</button>
                 </form>
                 </div>
                 @endforeach
@@ -87,7 +126,7 @@
                     <div class="modal-header d-flex align-items-center bg-primary text-white">
                         <h6 class="modal-title mb-0" id="threadModalLabel">New Discussion</h6>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
+                            <span aria-hidden="true"></span>
                         </button>
                     </div>
                     <div class="modal-body">

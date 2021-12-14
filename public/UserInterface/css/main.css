@@ -141,13 +141,56 @@ body{
     position: absolute;
     transform: translate(36rem, -2rem);
 }
-.answer{
-    background-color:#e3dcdc;
-}
 .hidden{
     display: none;
 }
 .answer-btn{
     border: none;
     color: var(--blue);
+}
+.answer-container {
+    display: flex;
+    background-color: #fff;
+    margin: 0 1% 2%;
+    border: 2px solid green;
+    padding: 1%;
+    border-radius: 15px;
+    position: relative;
+}
+.answer-container .user, .answers {
+    flex-basis: 10%;
+}
+.answer-container .answer p{
+    margin-left: 10%;
+}
+img.showanswer {
+    border-radius: 50px;
+    box-shadow: 0px 1px 5px;
+}
+.best-answer {
+    left: 73%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    width: 30%;
+    color: green;
+}
+h4 {
+    margin-left: 2%;
+    font-size: 20px;
+    font-weight: bold;
+}
+.normal-answers-container {
+    display: flex;
+    margin: 1% 3%;
+    background-color: whitesmoke;
+    padding: 1%;
+}
+.rate-answer {
+    position: absolute;
+    left: 95%;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
 }

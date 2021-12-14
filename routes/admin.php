@@ -21,4 +21,3 @@ Route::get('/', function () {
         return redirect()->route('admin-view');
     });
 Auth::routes();
-

@@ -1,24 +1,38 @@
-let sohwanswer = document.querySelector('.showanswer'),
-ShowAnswer = document.querySelector('.ShowAnswer'),
-HideAnswer = document.querySelector('.HideAnswer');
+let sohwanswer = document.getElementsByClassName('showanswer'),
+ShowAnswer = document.getElementsByClassName('ShowAnswer'),
+HideAnswer = document.getElementsByClassName('HideAnswer'),
+Up = document.getElementsByClassName("up"),
+down = document.getElementsByClassName("down");
+
 function showMore() {
-    sohwanswer.classList.remove("hidden");
-    ShowAnswer.classList.add('hidden');
-    HideAnswer.classList.remove('hidden');
+for(i = 0; i < sohwanswer.length; i++){
+  sohwanswer[i].classList.remove("hidden");
+}
+for(x = 0; x < ShowAnswer.length; x++){
+  ShowAnswer[x].classList.add('hidden');
+}
+for(z = 0; z < HideAnswer.length; z++){
+  HideAnswer[z].classList.remove('hidden');
+}
 }
 
-HideAnswer.addEventListener('click',hideShowLess);
-      function hideShowLess(){
-        sohwanswer.classList.add("hidden");
-        ShowAnswer.classList.remove('hidden');
-        HideAnswer.classList.add('hidden');
-      }
-// function HideAnswer() {
-//     HideAnswer.classList.add('hidden');
-//     ShowAnswer.classList.remove('hidden');
-// }
-//   showless.addEventListener('click',hideShowLess);
-//   function hideShowLess(){
-//       showless.classList.add("hide");
-//       showmore.classList.remove("hide")
+
+function hideShowLess(){
+  for(y = 0; y < sohwanswer.length; y++){
+    sohwanswer[y].classList.add("hidden");
+  }
+  for(c = 0; c < ShowAnswer.length; c++){
+    ShowAnswer[c].classList.remove('hidden');
+  }
+  for(d = 0; d < HideAnswer.length; d++){
+    HideAnswer[d].classList.add('hidden');
+  }
+  }
+
+// function increase(){
+//   let p = document.getElementById("Toup"),
+//   g = 0;
+//   for(g; g < 10; g++){
+//     p.innerHTML = g+=1;
 //   }
+// }

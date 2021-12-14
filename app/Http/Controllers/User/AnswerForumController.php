@@ -20,7 +20,8 @@ class AnswerForumController extends Controller
     public function index()
     {
         //
-        return view('user.index');
+        $forums = Forum::all();
+        return view('user.index' , compact('fourms'));
     }
 
     /**
@@ -44,24 +45,32 @@ class AnswerForumController extends Controller
     {
         //
         $validator = Validator::make($request->all() , [
-            'answer' => ['required'],
-            'user_id' => ['required', 'min:4' , 'max:225'],
-            'fourm_id' => ['required' , 'email' , 'unique:users'],
-            'status' => ['required' , 'min:8'],
-            'rate' => ['required'],
+            // 'answer' => ['required'],
+            // 'user_id' => ['required',],
+            // 'fourm_id' => ['required'],
+            // 'status' => ['required'],
+            // 'rate' => ['required'],
         ]);
         if($validator->fails())
         {
             return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }else{
+            
+            // $answer = Answer::create([
+            //     'answer' => $request->input('answer'),
+            //     'user_id' => Auth()->user() ? Auth()->user()->id : null,
+            //     'forum_id' => $request->input('forum_id'),
+            //     'status' => $request->input('status'),
+            //     'rate' => $request->input('rate'),
+            // ]);
+            $answer = new Answer();
+            $answer->answer = $request->input('answer');
+            $answer->forum_id = $request->input('forum_id');
+            $answer->user_id = Auth()->user()->id;
+            $answer->status = $request->input('status');
+            $answer->rate = $request->input('rate');
+            $answer->save();
         }
-            $forum = new Forum();
-            $answer = Answer::create([
-                'answer' => $request->input('answer'),
-                'user_id' => Auth()->user() ? Auth()->user()->id : null,
-                'forum_id' => $request->input('forum_id'),
-                'status' => $request->input('status'),
-                'rate' => $request->input('rate'),
-            ]);
             return redirect()->back()->with(['success' => 'You Answered This Forum']);
     }
 
@@ -93,6 +102,8 @@ class AnswerForumController extends Controller
     public function edit($id)
     {
         //
+        $answer = Answer::findOrFail($id);
+        return view('user.index' , compact($answer));
     }
 
     /**
@@ -105,6 +116,11 @@ class AnswerForumController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $answer = Answer::findOrFail($id);
+        $answer->update([
+            'rate' => $request->rate
+        ]);
+        return redirect();
     }
 
     /**

@@ -18,7 +18,7 @@ class CheckUser
     public function handle(Request $request, Closure $next)
     {
         $isuser = Auth::user()->role_id;
-        if($isuser == 1)
+        if($isuser == 1 || $isuser == 2)
         {
             return $next($request);
         }
