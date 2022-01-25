@@ -16,7 +16,9 @@ class Answer extends Model
         'forum_id',
         'user_id',
         'status',
-        'rate'
+        'rate',
+        'helpful',
+        'unhelpful'
     ];
 
     public function forum(){

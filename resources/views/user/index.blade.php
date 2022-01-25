@@ -35,7 +35,8 @@
                     <form method="POST" action="{{route('answer.store')}}" class="contact-form form-validate" novalidate="novalidate">
                         @csrf
                         <input type="hidden" name="status" id="" value="0">
-                        <input type="hidden" name="rate" id="" value="0">
+                        <input type="hidden" name="helpful" id="" value="0">
+                        <input type="hidden" name="unhelpful" id="" value="0">
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
                                 <input type="hidden" name="forum_id" value="{{$forum->id}}">
@@ -49,6 +50,7 @@
                         <div class="col-sm-12 mb-3">
                             <input type="submit" name="submit" class="btn btn-primary" value="Post">
                         </div>
+                    </form>
                         @foreach ($answers as $answer)
                             @if ($answer->forum->id == $forum->id)
                             @if ($answer->status == 1)
@@ -75,18 +77,7 @@
                                     </div>
                                     <p class="hidden showanswer">{{$answer->answer}}</p>
                                     <input type="hidden" name="" id="" value="{{$answer->id}}">
-                                    <div class="rate-answer">
-                                        <form method="POST" action="{{route('answers.update' , $answer->id)}}">
-                                            @csrf
-                                            {{@method_field('PUT')}}
-                                            <input type="hidden" name="" id="" value="{{$answer->id}}">
-                                            <div>
-                                                <input name="rate" id="" type="hidden" value="1">Up
-                                            </div>
-                                            <p>{{$answer->rate}}</p>
-                                            <i class="fas fa-caret-down"></i>
-                                        </form>
-                                    </div>
+
                                 </div>
                                 
                             </div>
@@ -95,7 +86,7 @@
                         @endforeach
                         <button type="button" class="ShowAnswer answer-btn m-3 font-weight-bold" onclick="showMore()">Show Answers</button>
                         <button type="button" class="HideAnswer hidden answer-btn m-3 font-weight-bold" onclick="hideShowLess()">Hide Answers</button>
-                </form>
+                
                 </div>
                 @endforeach
                 

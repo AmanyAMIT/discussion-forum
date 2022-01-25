@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateForumsTable extends Migration
+class CreateAnswersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,23 @@ class CreateForumsTable extends Migration
      */
     public function up()
     {
-        Schema::create('forums', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->bigInteger('id' , 3);
-            $table->string('title');
-            $table->string('body');
-            $table->bigInteger('cat_id');
+            $table->string('answer');
+            $table->bigInteger('forum_id');
             $table->bigInteger('user_id');
+            $table->integer('status');
+            // $table->integer('rate');
+            $table->integer('helpful');
+            $table->integer('unhelpful');
             $table->timestamps();
-            
         });
-        Schema::table('forums', function($table)
+
+        Schema::table('answers', function($table)
         {
-            $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('forum_id')->references('id')->on('forums')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
-    
     }
 
     /**
@@ -37,6 +39,6 @@ class CreateForumsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forums');
+        Schema::dropIfExists('answers');
     }
 }

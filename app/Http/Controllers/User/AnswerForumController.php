@@ -45,11 +45,8 @@ class AnswerForumController extends Controller
     {
         //
         $validator = Validator::make($request->all() , [
-            // 'answer' => ['required'],
-            // 'user_id' => ['required',],
-            // 'fourm_id' => ['required'],
-            // 'status' => ['required'],
-            // 'rate' => ['required'],
+            'answer' => ['required'],
+            'forum_id' => ['required']
         ]);
         if($validator->fails())
         {
@@ -68,10 +65,16 @@ class AnswerForumController extends Controller
             $answer->forum_id = $request->input('forum_id');
             $answer->user_id = Auth()->user()->id;
             $answer->status = $request->input('status');
-            $answer->rate = $request->input('rate');
-            $answer->save();
+            $answer->helpful = $request->input('helpful');
+            $answer->unhelpful = $request->input('unhelpful');
+            // if($answer->helpful){
+            //     $answer->helpful = $request->input('helpful');
+            // }elseif($answer->unhelpful){
+            //     $answer->unhelpful = $request->input('unhelpful');
+            // }
         }
-            return redirect()->back()->with(['success' => 'You Answered This Forum']);
+        $answer->save();
+        return redirect()->back()->with(['success' => 'You Answered This Forum']);
     }
 
     /**
@@ -80,11 +83,6 @@ class AnswerForumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function ShowAnswer(){
-    //     $forums = Forum::paginate(5);
-    //     $answers = Answer::all();
-    //     return view('user.answers.showAnswer' , compact('forums' , 'answers'));
-    // }
 
     public function show($id)
     {
@@ -117,9 +115,13 @@ class AnswerForumController extends Controller
     {
         //
         $answer = Answer::findOrFail($id);
-        $answer->update([
-            'rate' => $request->rate
-        ]);
+        if($request->input('helpful')){
+            $answer->helpful + 1;
+            $answer->update();
+        }elseif($request->input('unhelpful')){
+            $answer->unhelpful +1;
+            $answer->update();
+        }
         return redirect();
     }
 

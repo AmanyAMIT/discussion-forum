@@ -21,21 +21,24 @@ class AnswerSeeder extends Seeder
                 'forum_id' => '1',
                 'user_id' => '2',
                 'status' => '0',
-                'rate' => '0'
+                'helpful' => '0',
+                'unhelpful' => '0'
             ),
             array(
                 'answer' => 'MVC stands for Model View Controller',
                 'forum_id' => '2',
                 'user_id' => '3',
                 'status' => '0',
-                'rate' => '0'
+                'helpful' => '0',
+                'unhelpful' => '0'
             ),
             array(
                 'answer' => 'Model View Controller',
                 'forum_id' => '2',
                 'user_id' => '1',
                 'status' => '0',
-                'rate' => '0'
+                'helpful' => '0',
+                'unhelpful' => '0'
             ),
             ]);
     }
